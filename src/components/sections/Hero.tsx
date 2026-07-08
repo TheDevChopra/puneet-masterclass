@@ -25,7 +25,7 @@ export function Hero() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-primary-hover)] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-primary-hover)]"></span>
                 </span>
-                Live Online Masterclass by Puneet Kaur Saluja
+                A Live Online Masterclass by Puneet Kaur Saluja
               </div>
             </StaggerItem>
 
@@ -33,7 +33,7 @@ export function Hero() {
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-[var(--color-foreground)] leading-[1.1] mb-6">
                 Your Content Is Being <span className="relative inline-block px-2 bg-[var(--color-primary)]/20 rounded-lg">Ignored.</span>
                 <br />
-                <span className="text-[var(--color-muted-foreground)]">And it's not because it's bad.</span>
+                <span className="text-[var(--color-muted-foreground)]">And It’s Not Because It’s Bad.</span>
               </h1>
             </StaggerItem>
 
@@ -48,38 +48,12 @@ export function Hero() {
                 <Link href="/register" className="w-full sm:w-auto">
                   <Button size="lg" className="w-full text-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative group overflow-hidden">
                     <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer" />
-                    Reserve Your Seat
+                    🎟️ Join Now at just ₹99
                   </Button>
                 </Link>
-                <div className="flex items-center gap-4">
-                  <Button variant="ghost" size="lg" onClick={handleExplore} className="w-full sm:w-auto hover:bg-[var(--color-muted)]">
-                    Explore Workshop
-                  </Button>
-                  <div className="hidden sm:flex flex-col">
-                    <span className="text-xs text-[var(--color-muted-foreground)] uppercase tracking-wider font-semibold">Only</span>
-                    <span className="text-xl font-bold">₹99</span>
-                  </div>
-                </div>
               </div>
             </StaggerItem>
 
-            <StaggerItem>
-              <div className="flex flex-wrap gap-y-4 gap-x-6 text-sm font-medium text-[var(--color-muted-foreground)]">
-                {[
-                  "9+ Years Experience",
-                  "Live Interactive",
-                  "Practical Frameworks",
-                  "Psychology Driven",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-2">
-                    <div className="flex items-center justify-center w-5 h-5 rounded-full bg-[var(--color-primary)]/20 text-[var(--color-primary-hover)]">
-                      <Check className="w-3 h-3" />
-                    </div>
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </StaggerItem>
           </StaggerReveal>
 
           <FadeIn direction="left" delay={0.3} className="relative hidden lg:block h-[600px] w-full rounded-[32px] bg-gradient-to-br from-[var(--color-muted)] to-[var(--color-background)] border shadow-premium overflow-hidden">

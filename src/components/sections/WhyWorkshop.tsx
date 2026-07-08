@@ -1,72 +1,66 @@
-import { Brain, Heart, ShieldCheck, Zap, MessageSquare, Lightbulb } from "lucide-react"
+import { XCircle } from "lucide-react"
 import { Container, Section } from "../layout/Layout"
 import { FadeIn, StaggerReveal, StaggerItem } from "../animations/Reveal"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../ui/card"
+import { Card, CardContent } from "../ui/card"
+import Link from "next/link"
+import { Button } from "../ui/button"
 
 export function WhyWorkshop() {
-  const reasons = [
-    {
-      title: "Communication Psychology",
-      desc: "Understand how the human brain processes and retains information.",
-      icon: <Brain className="w-6 h-6" />,
-    },
-    {
-      title: "Brand Recall",
-      desc: "Frameworks to make your brand impossible to ignore.",
-      icon: <Zap className="w-6 h-6" />,
-    },
-    {
-      title: "Trust Building",
-      desc: "The subtle art of establishing authority without bragging.",
-      icon: <ShieldCheck className="w-6 h-6" />,
-    },
-    {
-      title: "Consumer Behaviour",
-      desc: "Why people click, share, and ultimately buy from you.",
-      icon: <Heart className="w-6 h-6" />,
-    },
-    {
-      title: "Message Framing",
-      desc: "Structuring your copy to align with user expectations.",
-      icon: <MessageSquare className="w-6 h-6" />,
-    },
-    {
-      title: "Decision Psychology",
-      desc: "Nudging audiences towards the right action effortlessly.",
-      icon: <Lightbulb className="w-6 h-6" />,
-    },
+  const notLearning = [
+    "Viral hacks",
+    "Instagram algorithm tricks",
+    "AI prompts to generate endless content",
+    "\"Post consistently and you'll grow\"",
   ]
 
   return (
-    <Section className="bg-white">
+    <Section className="bg-white py-20">
       <Container>
         <FadeIn className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            Why This Workshop?
+            This Isn't Another "Content Marketing" Webinar.
           </h2>
           <p className="text-xl text-[var(--color-muted-foreground)]">
-            Move beyond generic templates. Learn the fundamental psychology of why certain messages work while others fall flat.
+            You're not going to learn:
           </p>
         </FadeIn>
 
-        <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reasons.map((reason) => (
-            <StaggerItem key={reason.title}>
-              <Card className="h-full border border-[var(--color-border)]/50 group hover:-translate-y-1 transition-all duration-300">
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary-hover)] flex items-center justify-center mb-4 group-hover:bg-[var(--color-primary)] group-hover:text-[var(--color-primary-foreground)] transition-colors duration-300">
-                    {reason.icon}
-                  </div>
-                  <CardTitle className="text-xl">{reason.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base text-[var(--color-muted-foreground)]">
-                    {reason.desc}
-                  </CardDescription>
+        <StaggerReveal className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16">
+          {notLearning.map((item) => (
+            <StaggerItem key={item}>
+              <Card className="border border-[var(--color-border)]/50 shadow-sm">
+                <CardContent className="p-6 flex items-center gap-4">
+                  <XCircle className="w-8 h-8 text-red-500 shrink-0" />
+                  <span className="text-lg font-medium text-[var(--color-foreground)]">{item}</span>
                 </CardContent>
               </Card>
             </StaggerItem>
           ))}
+        </StaggerReveal>
+
+        <StaggerReveal className="max-w-3xl mx-auto text-center">
+          <StaggerItem>
+            <p className="text-2xl md:text-3xl font-medium leading-relaxed mb-4">
+              Because those tactics change every few months.
+            </p>
+          </StaggerItem>
+          <StaggerItem>
+            <p className="text-2xl md:text-3xl font-bold leading-relaxed mb-8 text-[var(--color-primary-hover)]">
+              Human psychology doesn't.
+            </p>
+          </StaggerItem>
+          <StaggerItem>
+            <p className="text-xl md:text-2xl leading-relaxed text-[var(--color-muted-foreground)] mb-12">
+              Instead, you'll discover why some messages stay with people for years while others are forgotten within seconds.
+            </p>
+          </StaggerItem>
+          <StaggerItem>
+            <Link href="/register" className="inline-block w-full sm:w-auto">
+              <Button size="lg" className="w-full text-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                👉 Reserve Your Seat for Just ₹99
+              </Button>
+            </Link>
+          </StaggerItem>
         </StaggerReveal>
       </Container>
     </Section>

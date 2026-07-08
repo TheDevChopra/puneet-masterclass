@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/sections/Navbar"
 import { Hero } from "@/components/sections/Hero"
 import { Problem } from "@/components/sections/Problem"
 import { BigIdea } from "@/components/sections/BigIdea"
@@ -7,16 +6,13 @@ import { WhatYouWillLearn } from "@/components/sections/WhatYouWillLearn"
 import { WhoShouldAttend } from "@/components/sections/WhoShouldAttend"
 import { About } from "@/components/sections/About"
 import { WhyThisMatters } from "@/components/sections/WhyThisMatters"
-import { Testimonials } from "@/components/sections/Testimonials"
 import { Pricing } from "@/components/sections/Pricing"
 import { FAQ } from "@/components/sections/FAQ"
 import { FinalCTA } from "@/components/sections/FinalCTA"
-import { Footer } from "@/components/sections/Footer"
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[var(--color-background)]">
-      <Navbar />
       <Hero />
       <Problem />
       <BigIdea />
@@ -25,11 +21,9 @@ export default function Home() {
       <WhoShouldAttend />
       <About />
       <WhyThisMatters />
-      <Testimonials />
       <Pricing />
       <FAQ />
       <FinalCTA />
-      <Footer />
     </main>
   )
 }

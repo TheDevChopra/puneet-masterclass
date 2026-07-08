@@ -10,40 +10,33 @@ import { cn } from "@/lib/utils"
 export function FAQ() {
   const faqs = [
     {
-      question: "Is this for beginners?",
-      answer: "Whether you're just starting out or you've been creating content for years, understanding human psychology is a fundamental skill. The frameworks taught apply to all levels of experience.",
+      question: "Is this only for writers?",
+      answer: "Not at all. If your work involves communicating with customers, clients, or an audience, this workshop is for you.",
     },
     {
-      question: "Will this help my business?",
-      answer: "Absolutely. If your business relies on communication—whether that's sales emails, landing pages, social media, or pitching clients—this workshop will give you an unfair advantage.",
+      question: "Will this be useful if I'm just starting out?",
+      answer: "Absolutely. Whether you're building a personal brand or scaling a business, the principles you'll learn apply at every stage.",
     },
     {
-      question: "Will examples be shared?",
-      answer: "Yes. The workshop is highly practical and includes real-world case studies breaking down exactly why certain pieces of communication worked spectacularly well.",
+      question: "Is this about copywriting?",
+      answer: "No. This goes beyond writing. It's about understanding the psychology behind communication—so every piece of content, every campaign, and every conversation creates a stronger impact.",
     },
     {
-      question: "Is this just about copywriting?",
-      answer: "No. While it applies heavily to copywriting, the principles apply to any form of communication: speaking, video scripts, emails, and everyday business communication.",
-    },
-    {
-      question: "Will a recording be available?",
-      answer: "Yes, all attendees will receive lifetime access to the recording of the masterclass so you can revisit the frameworks whenever you need them.",
+      question: "Will there be practical examples?",
+      answer: "Yes. The session includes real brand examples and practical insights that you can apply immediately.",
     },
   ]
 
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <Section className="bg-white" id="faq">
+    <Section className="bg-white py-20" id="faq">
       <Container>
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-24">
           <FadeIn className="lg:col-span-1">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
               Frequently Asked Questions
             </h2>
-            <p className="text-lg text-[var(--color-muted-foreground)] mb-8">
-              Everything you need to know about the masterclass. Can't find the answer you're looking for? Feel free to reach out.
-            </p>
           </FadeIn>
 
           <StaggerReveal className="lg:col-span-2">
@@ -76,7 +69,7 @@ export function FAQ() {
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.3, ease: "easeInOut" }}
                         >
-                          <div className="px-6 pb-6 text-[var(--color-muted-foreground)] leading-relaxed">
+                          <div className="px-6 pb-6 text-[var(--color-muted-foreground)] leading-relaxed text-lg">
                             {faq.answer}
                           </div>
                         </motion.div>
