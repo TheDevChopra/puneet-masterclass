@@ -10,7 +10,7 @@ export function About() {
           <FadeIn direction="right" className="relative">
             <div className="aspect-[4/5] w-full max-w-md mx-auto lg:mx-0 rounded-[32px] overflow-hidden bg-white shadow-premium border relative">
               <Image 
-                src="/images/mentor/mentor_bg.png" 
+                src="/images/mentor/puneet-new.jpg" 
                 alt="Puneet Kaur Saluja" 
                 fill
                 className="object-cover bg-white"
