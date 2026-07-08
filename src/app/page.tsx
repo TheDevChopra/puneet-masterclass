@@ -1,3 +1,4 @@
+import { Navbar } from "@/components/sections/Navbar"
 import { Hero } from "@/components/sections/Hero"
 import { Problem } from "@/components/sections/Problem"
 import { BigIdea } from "@/components/sections/BigIdea"
@@ -13,6 +14,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA"
 export default function Home() {
   return (
     <main className="min-h-screen bg-[var(--color-background)]">
+      <Navbar />
       <Hero />
       <Problem />
       <BigIdea />
