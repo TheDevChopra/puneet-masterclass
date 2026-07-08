@@ -24,7 +24,7 @@ export function Hero() {
             </StaggerItem>
 
             <StaggerItem>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--color-foreground)] leading-[1.1] mb-6">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--color-foreground)] leading-[1.1] mb-6">
                 Your Content Is Being{" "}
                 <span className="relative inline-block px-2 bg-[var(--color-primary)]/20 rounded-lg">
                   Ignored.
