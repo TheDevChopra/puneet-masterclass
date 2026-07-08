@@ -9,7 +9,7 @@ export function BigIdea() {
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <StaggerReveal className="max-w-2xl">
             <StaggerItem>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">
                 Here's The Truth Nobody Talks About...
               </h2>
             </StaggerItem>

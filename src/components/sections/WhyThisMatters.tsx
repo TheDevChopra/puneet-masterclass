@@ -7,7 +7,7 @@ export function WhyThisMatters() {
       <Container>
         <div className="max-w-4xl mx-auto">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
               Why This Workshop Matters
             </h2>
           </FadeIn>

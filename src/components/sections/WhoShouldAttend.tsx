@@ -19,7 +19,7 @@ export function WhoShouldAttend() {
       <Container>
         <div className="grid lg:grid-cols-3 gap-12 items-start">
           <FadeIn className="lg:col-span-1">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
               Who Should Attend?
             </h2>
             <p className="text-xl text-[var(--color-muted-foreground)]">

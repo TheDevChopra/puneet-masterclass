@@ -20,7 +20,7 @@ export function About() {
 
           <StaggerReveal className="max-w-xl">
             <StaggerItem>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-2">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-2">
                 Meet Your Mentor
               </h2>
             </StaggerItem>

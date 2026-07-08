@@ -34,7 +34,7 @@ export function FAQ() {
       <Container>
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-24">
           <FadeIn className="lg:col-span-1">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
               Frequently Asked Questions
             </h2>
           </FadeIn>

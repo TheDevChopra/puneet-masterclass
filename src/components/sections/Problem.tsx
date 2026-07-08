@@ -18,7 +18,7 @@ export function Problem() {
       <Container>
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <FadeIn direction="right" className="max-w-xl">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">
               You're Doing Everything They Told You To Do...
             </h2>
             <div className="grid gap-4">

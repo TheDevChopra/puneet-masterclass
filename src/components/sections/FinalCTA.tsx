@@ -15,7 +15,7 @@ export function FinalCTA() {
         <div className="max-w-4xl mx-auto text-center">
           <StaggerReveal>
             <StaggerItem>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 leading-tight">
                 Your Audience Already Sees Content All Day.
               </h2>
             </StaggerItem>
@@ -27,7 +27,7 @@ export function FinalCTA() {
             </StaggerItem>
             
             <StaggerItem>
-              <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-primary)] mb-16">
+              <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-primary)] mb-16">
                 Will they remember yours?
               </p>
             </StaggerItem>

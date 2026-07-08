@@ -18,7 +18,7 @@ export function Pricing() {
       <Container>
         <div className="max-w-4xl mx-auto">
           <FadeIn className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
               Your Investment
             </h2>
           </FadeIn>
@@ -44,7 +44,7 @@ export function Pricing() {
                 <div className="md:col-span-2 p-8 md:p-12 bg-[var(--color-muted)]/20 flex flex-col justify-center items-center text-center">
                   <p className="text-xl font-bold uppercase text-[var(--color-muted-foreground)] mb-2">Today:</p>
                   <div className="flex items-start justify-center gap-1 mb-8">
-                    <span className="text-5xl md:text-6xl font-bold tracking-tighter text-[var(--color-primary-hover)]">Only ₹99</span>
+                    <span className="text-4xl md:text-5xl font-bold tracking-tighter text-[var(--color-primary-hover)]">Only ₹99</span>
                   </div>
                   
                   <p className="text-lg text-[var(--color-muted-foreground)] mb-8 font-medium">
