@@ -5,12 +5,9 @@ import { CheckCircle2 } from 'lucide-react';
 
 export default function DiscoverSection() {
   const discoveries = [
-    "Why some brands become unforgettable while others disappear after one scroll.",
-    "The psychological reason people trust certain businesses almost instantly.",
-    "Why creating more content often doesn't create more impact.",
-    "The communication mistakes that silently weaken your brand.",
-    "How successful brands build trust long before they make an offer.",
-    "A practical way to think about communication that you can apply to every post, campaign, presentation, or sales conversation."
+    "Why some brands become unforgettable while others disappear.",
+    "The psychological reason people trust certain businesses instantly.",
+    "A practical way to communicate that you can apply everywhere."
   ];
 
   return (
