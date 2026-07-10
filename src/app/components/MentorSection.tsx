@@ -15,7 +15,7 @@ export default function MentorSection() {
             <div className="absolute inset-0 bg-primary/10 rounded-[2.5rem] transform rotate-3 scale-105 transition-transform duration-500 hover:rotate-6" />
             <div className="relative rounded-[2.5rem] overflow-hidden border border-border shadow-2xl bg-card aspect-[4/5] hover-lift">
               <AppImage 
-                src="/images/mentor/puneet-new2.png" 
+                src="/images/mentor/puneet-yellow.jpg" 
                 alt="Puneet Kaur Saluja" 
                 fill
                 className="object-cover bg-card opacity-90 grayscale-[20%] hover:grayscale-0 transition-all duration-500"
