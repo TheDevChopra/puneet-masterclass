@@ -85,7 +85,7 @@ export default function PricingFaqSection() {
               <div className="md:w-2/5 p-10 md:p-14 bg-muted/30 flex flex-col justify-center items-center text-center">
                 <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">Today:</p>
                 <div className="mb-6">
-                  <span className="text-3xl font-bold tracking-tighter gradient-amber">Only ₹199</span>
+                  <span className="text-3xl font-bold tracking-tighter gradient-amber">Only ₹99</span>
                 </div>
                 
                 <p className="text-sm text-muted-foreground mb-8">

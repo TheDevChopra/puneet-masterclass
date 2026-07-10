@@ -28,12 +28,12 @@ export default function MentorSection() {
               <h2 className="text-section-xl font-bold mb-2 text-foreground">
                 Meet Your Mentor
               </h2>
-              <h3 className="text-xl font-bold gradient-amber">
+              <h3 className="text-xl font-bold text-foreground">
                 Puneet Kaur Saluja
               </h3>
             </div>
             
-            <div className="space-y-6 text-base leading-relaxed text-muted-foreground">
+            <div className="space-y-6 text-lg leading-relaxed text-foreground">
               <p>
                 What started as a ₹500 freelance writing project became a nine-year journey into content, branding, advertising, and communication strategy.
               </p>
@@ -42,7 +42,7 @@ export default function MentorSection() {
                 While working with businesses across industries, one question kept appearing:
               </p>
               
-              <div className="border-l-4 border-primary pl-6 py-4 italic font-medium text-foreground bg-primary/5 rounded-r-xl">
+              <div className="border-l-4 border-primary pl-6 py-4 bg-primary/5 rounded-r-xl">
                 <p>
                   Why do some brands become unforgettable while others, despite creating good content, remain invisible?
                 </p>
@@ -52,7 +52,7 @@ export default function MentorSection() {
                 That question led to years of studying consumer behaviour, communication psychology, and brand perception.
               </p>
               
-              <p className="text-lg font-bold text-foreground pt-4">
+              <p>
                 Today, Puneet helps businesses move beyond creating content - and start creating communication that people actually remember.
               </p>
             </div>
