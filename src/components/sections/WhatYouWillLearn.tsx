@@ -14,17 +14,14 @@ export function WhatYouWillLearn() {
   ]
 
   return (
-    <Section className="bg-[var(--color-background)] py-20" id="discover">
+    <Section className="bg-[var(--color-background)]" id="discover">
       <Container>
         <FadeIn className="max-w-3xl mx-auto mb-16 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+          <h2 className="h2 mb-6">
             What You'll Discover
           </h2>
-          <p className="text-xl text-[var(--color-muted-foreground)] mb-4">
+          <p className="body-regular text-[var(--color-muted-foreground)] mb-4">
             By the end of this session, you'll look at marketing completely differently.
-          </p>
-          <p className="text-xl text-[var(--color-muted-foreground)]">
-            You'll discover:
           </p>
         </FadeIn>
 
@@ -32,9 +29,9 @@ export function WhatYouWillLearn() {
           {discoveries.map((item, i) => (
             <StaggerItem key={i}>
               <Card className="h-full border border-[var(--color-border)]/50 bg-white group hover:shadow-premium-hover transition-all duration-500 overflow-hidden relative">
-                <CardContent className="p-8 flex items-start gap-4">
+                <CardContent className="flex items-start gap-4 pt-8">
                   <CheckCircle2 className="w-8 h-8 text-[var(--color-primary)] shrink-0 mt-1" />
-                  <p className="text-lg text-[var(--color-foreground)] leading-relaxed">
+                  <p className="body-regular text-[var(--color-foreground)]">
                     {item}
                   </p>
                 </CardContent>

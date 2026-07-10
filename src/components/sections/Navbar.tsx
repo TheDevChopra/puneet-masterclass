@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { cn } from "@/lib/utils"
+import { Sparkle } from "lucide-react"
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -28,9 +29,10 @@ export function Navbar() {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link 
           href="/" 
-          className="font-bold text-xl md:text-2xl tracking-tight text-[var(--color-foreground)] hover:opacity-80 transition-opacity"
+          className="flex items-center gap-1.5 font-bold text-xl md:text-2xl tracking-tight text-[var(--color-foreground)] hover:opacity-80 transition-opacity"
         >
-          Masterclass
+          Puneet Kaur Saluja
+          <Sparkle className="w-5 h-5 text-[var(--color-primary-hover)] fill-[var(--color-primary-hover)]" />
         </Link>
         
         <div className="flex items-center gap-6">

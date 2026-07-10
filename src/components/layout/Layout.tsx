@@ -30,7 +30,7 @@ export function Section({ children, className, id, dark }: SectionProps) {
     <section
       id={id}
       className={cn(
-        "relative py-24 md:py-32",
+        "relative py-24 lg:py-32",
         dark ? "bg-[var(--color-foreground)] text-white" : "",
         className
       )}

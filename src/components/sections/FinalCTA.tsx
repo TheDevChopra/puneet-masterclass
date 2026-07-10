@@ -2,11 +2,13 @@ import { Container, Section } from "../layout/Layout"
 import { FadeIn, StaggerReveal, StaggerItem } from "../animations/Reveal"
 import { Button } from "../ui/button"
 import Link from "next/link"
+import { Ticket } from "lucide-react"
 
 export function FinalCTA() {
   return (
-    <Section className="bg-[var(--color-foreground)] text-white overflow-hidden relative py-32 md:py-48" dark>
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+    <Section className="bg-[var(--color-foreground)] text-white overflow-hidden relative" dark>
+      {/* Blend gradient from previous section */}
+      <div className="absolute top-0 inset-x-0 h-48 bg-gradient-to-b from-white to-transparent opacity-20 pointer-events-none" />
       
       {/* Premium background effects */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[var(--color-primary)]/10 blur-[120px] pointer-events-none" />
@@ -15,40 +17,42 @@ export function FinalCTA() {
         <div className="max-w-4xl mx-auto text-center">
           <StaggerReveal>
             <StaggerItem>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 leading-tight">
+              <h2 className="h2 mb-4 leading-tight text-white">
                 Your Audience Already Sees Content All Day.
               </h2>
             </StaggerItem>
             
             <StaggerItem>
-              <p className="text-2xl md:text-3xl text-white/70 mb-4 font-medium">
+              <p className="body-large text-white/70 mb-4 font-medium">
                 The question is...
               </p>
             </StaggerItem>
             
             <StaggerItem>
-              <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-primary)] mb-16">
+              <p className="h2 text-[var(--color-primary)] mb-16">
                 Will they remember yours?
               </p>
             </StaggerItem>
             
             <StaggerItem>
-              <p className="text-xl md:text-2xl font-bold mb-2">
+              <p className="body-large font-bold mb-2">
                 Join The Psychology Behind Writing Masterclass
               </p>
             </StaggerItem>
             
             <StaggerItem>
-              <p className="text-xl md:text-2xl font-bold text-[var(--color-primary)] mb-10">
+              <p className="body-large font-bold text-[var(--color-primary)] mb-10">
                 Only ₹99
               </p>
             </StaggerItem>
             
             <StaggerItem>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <div className="flex justify-center">
                 <Link href="/register" className="w-full sm:w-auto">
-                  <Button size="lg" className="w-full h-16 px-12 text-lg font-bold bg-[var(--color-primary)] text-[var(--color-foreground)] hover:bg-[var(--color-primary-hover)] shadow-[0_0_40px_-10px_rgba(255,199,44,0.5)] transition-all hover:-translate-y-1">
-                    Reserve Your Seat Today
+                  <Button size="lg" className="w-full text-lg shadow-[var(--shadow-glow)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative group overflow-hidden flex items-center justify-center gap-2">
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer" />
+                    <Ticket className="w-5 h-5 shrink-0" />
+                    Reserve Your Seat for Just ₹99
                   </Button>
                 </Link>
               </div>

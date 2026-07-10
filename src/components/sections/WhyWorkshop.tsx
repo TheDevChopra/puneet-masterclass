@@ -4,6 +4,7 @@ import { FadeIn, StaggerReveal, StaggerItem } from "../animations/Reveal"
 import { Card, CardContent } from "../ui/card"
 import Link from "next/link"
 import { Button } from "../ui/button"
+import { Ticket } from "lucide-react"
 
 export function WhyWorkshop() {
   const notLearning = [
@@ -14,13 +15,13 @@ export function WhyWorkshop() {
   ]
 
   return (
-    <Section className="bg-white py-20">
+    <Section className="bg-white">
       <Container>
         <FadeIn className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+          <h2 className="h2 mb-6">
             This Isn't Another "Content Marketing" Webinar.
           </h2>
-          <p className="text-xl text-[var(--color-muted-foreground)]">
+          <p className="body-regular text-[var(--color-muted-foreground)]">
             You're not going to learn:
           </p>
         </FadeIn>
@@ -28,10 +29,10 @@ export function WhyWorkshop() {
         <StaggerReveal className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16">
           {notLearning.map((item) => (
             <StaggerItem key={item}>
-              <Card className="border border-[var(--color-border)]/50 shadow-sm">
-                <CardContent className="p-6 flex items-center gap-4">
+              <Card className="border border-[var(--color-border)] shadow-sm">
+                <CardContent className="flex items-center gap-4 pt-8">
                   <XCircle className="w-8 h-8 text-red-500 shrink-0" />
-                  <span className="text-lg font-medium text-[var(--color-foreground)]">{item}</span>
+                  <span className="body-regular font-medium text-[var(--color-foreground)]">{item}</span>
                 </CardContent>
               </Card>
             </StaggerItem>
@@ -40,26 +41,30 @@ export function WhyWorkshop() {
 
         <StaggerReveal className="max-w-3xl mx-auto text-center">
           <StaggerItem>
-            <p className="text-2xl md:text-3xl font-medium leading-relaxed mb-4">
+            <p className="body-large mb-4">
               Because those tactics change every few months.
             </p>
           </StaggerItem>
           <StaggerItem>
-            <p className="text-2xl md:text-3xl font-bold leading-relaxed mb-8 text-[var(--color-primary-hover)]">
+            <p className="body-large font-bold mb-4 text-[var(--color-primary-hover)]">
               Human psychology doesn't.
             </p>
           </StaggerItem>
           <StaggerItem>
-            <p className="text-xl md:text-2xl leading-relaxed text-[var(--color-muted-foreground)] mb-12">
+            <p className="body-large text-[var(--color-muted-foreground)] mb-8">
               Instead, you'll discover why some messages stay with people for years while others are forgotten within seconds.
             </p>
           </StaggerItem>
           <StaggerItem>
-            <Link href="/register" className="inline-block w-full sm:w-auto">
-              <Button size="lg" className="w-full text-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                👉 Reserve Your Seat for Just ₹99
-              </Button>
-            </Link>
+            <div className="flex justify-center">
+              <Link href="/register" className="w-full sm:w-auto">
+                <Button size="lg" className="w-full text-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative group overflow-hidden flex items-center justify-center gap-2">
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer" />
+                  <Ticket className="w-5 h-5 shrink-0" />
+                  Reserve Your Seat for Just ₹99
+                </Button>
+              </Link>
+            </div>
           </StaggerItem>
         </StaggerReveal>
       </Container>

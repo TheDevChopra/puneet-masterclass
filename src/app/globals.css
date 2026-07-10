@@ -1,40 +1,44 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-inter);
 
   /* Premium Landing Page Colors */
-  --color-background: #FFFCF7; /* Warm white */
-  --color-foreground: #1F1F1F; /* Charcoal */
-  --color-muted: #FFF9F0; /* Ivory */
-  --color-muted-foreground: #6B7280;
+  --color-background: #FFFCF7; /* Main Background */
+  --color-foreground: #1F1F1F; /* Primary Text */
+  --color-muted: #FFFBEE; /* Section Background */
+  --color-muted-foreground: #6B7280; /* Supporting Text */
   
-  --color-primary: #FFC72C; /* Golden yellow */
+  --color-primary: #F4B400; /* Primary Brand Color */
   --color-primary-foreground: #1F1F1F;
-  --color-primary-hover: #F4B400;
+  --color-primary-hover: #FFC72C; /* Accents & Highlights */
 
-  --color-secondary: #FFF9F0;
+  --color-secondary: #FFFBEE;
   --color-secondary-foreground: #1F1F1F;
 
-  --color-accent: #FFF9F0;
+  --color-accent: #FFC72C;
   --color-accent-foreground: #1F1F1F;
 
-  --color-destructive: #ef4444;
+  --color-success: #22C55E;
+  --color-success-foreground: #ffffff;
+
+  --color-destructive: #EF4444;
   --color-destructive-foreground: #ffffff;
 
-  --color-border: #E5E7EB;
-  --color-input: #E5E7EB;
+  --color-border: #E6E3DA; /* Borders & Dividers */
+  --color-input: #E6E3DA;
   --color-ring: #FFC72C;
 
   /* Custom Border Radius */
-  --radius-lg: 24px;
+  --radius-lg: 28px;
   --radius-md: 20px;
   --radius-sm: 12px;
 
   /* Premium Shadows */
-  --shadow-premium: 0 10px 40px -10px rgba(0,0,0,0.05);
-  --shadow-premium-hover: 0 20px 40px -10px rgba(0,0,0,0.1);
+  --shadow-premium: 0px 8px 24px rgba(31, 31, 31, 0.08);
+  --shadow-premium-hover: 0px 20px 50px rgba(31, 31, 31, 0.10);
+  --shadow-glow: 0px 0px 40px rgba(244, 180, 0, 0.25);
 }
 
 @layer base {
@@ -63,3 +67,32 @@
   }
 }
 
+@layer components {
+  /* Typography System */
+  .h1 {
+    @apply text-[36px] md:text-[48px] lg:text-[64px] font-bold tracking-tight capitalize;
+  }
+  .h2 {
+    @apply text-[32px] md:text-[40px] lg:text-[48px] font-bold tracking-tight capitalize;
+  }
+  .h3 {
+    @apply text-[36px] font-bold tracking-tight capitalize;
+  }
+  .body-large {
+    @apply text-[22px] leading-relaxed;
+  }
+  .body-regular {
+    @apply text-[18px] leading-relaxed;
+  }
+  .text-small {
+    @apply text-[16px] leading-normal;
+  }
+  .text-caption {
+    @apply text-[14px] leading-normal;
+  }
+
+  /* Highlights */
+  .text-highlight {
+    @apply bg-[var(--color-primary)]/20 px-2 py-1 rounded-md font-semibold inline-block whitespace-normal;
+  }
+}

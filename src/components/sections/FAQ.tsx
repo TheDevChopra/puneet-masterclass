@@ -30,11 +30,11 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <Section className="bg-white py-20" id="faq">
+    <Section className="bg-white" id="faq">
       <Container>
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-24">
           <FadeIn className="lg:col-span-1">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+            <h2 className="h2 mb-6">
               Frequently Asked Questions
             </h2>
           </FadeIn>
@@ -45,15 +45,15 @@ export function FAQ() {
                 <StaggerItem key={i}>
                   <div 
                     className={cn(
-                      "border border-[var(--color-border)] rounded-2xl overflow-hidden transition-all duration-300",
+                      "border border-[var(--color-border)] rounded-[var(--radius-md)] overflow-hidden transition-all duration-300",
                       openIndex === i ? "bg-[var(--color-muted)]/30 border-[var(--color-primary)]/30 shadow-sm" : "bg-white hover:border-[var(--color-border)]/80"
                     )}
                   >
                     <button
                       onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                      className="w-full flex items-center justify-between p-6 text-left"
+                      className="w-full flex items-center justify-between py-4 px-6 text-left"
                     >
-                      <span className="font-semibold text-lg">{faq.question}</span>
+                      <span className="body-large font-semibold">{faq.question}</span>
                       <ChevronDown 
                         className={cn(
                           "w-5 h-5 text-[var(--color-muted-foreground)] transition-transform duration-300",
@@ -67,9 +67,9 @@ export function FAQ() {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
                         >
-                          <div className="px-6 pb-6 text-[var(--color-muted-foreground)] leading-relaxed text-lg">
+                          <div className="px-6 pb-4 text-[var(--color-muted-foreground)] body-regular">
                             {faq.answer}
                           </div>
                         </motion.div>

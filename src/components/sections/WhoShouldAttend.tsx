@@ -15,14 +15,14 @@ export function WhoShouldAttend() {
   ]
 
   return (
-    <Section className="bg-white border-t border-[var(--color-border)]/50 py-20">
+    <Section className="bg-white border-t border-[var(--color-border)]/50">
       <Container>
         <div className="grid lg:grid-cols-3 gap-12 items-start">
           <FadeIn className="lg:col-span-1">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+            <h2 className="h2 mb-6">
               Who Should Attend?
             </h2>
-            <p className="text-xl text-[var(--color-muted-foreground)]">
+            <p className="body-regular text-[var(--color-muted-foreground)]">
               It's perfect for:
             </p>
           </FadeIn>
@@ -44,15 +44,15 @@ export function WhoShouldAttend() {
         </div>
 
         <FadeIn className="max-w-3xl mx-auto text-center mt-24">
-          <p className="text-2xl font-medium text-[var(--color-muted-foreground)] mb-6">
+          <p className="body-large text-[var(--color-muted-foreground)] mb-6">
             If you've ever felt...
           </p>
           <div className="bg-[var(--color-muted)]/50 border-l-4 border-[var(--color-primary)] p-8 rounded-r-2xl mb-8">
-            <p className="text-2xl md:text-3xl font-bold italic leading-relaxed text-[var(--color-foreground)]">
+            <p className="body-large font-bold italic text-[var(--color-foreground)]">
               "I'm putting in the effort, but my audience still doesn't remember me."
             </p>
           </div>
-          <p className="text-2xl font-bold text-[var(--color-primary-hover)]">
+          <p className="body-large font-bold text-[var(--color-primary-hover)]">
             You're exactly who this workshop is for.
           </p>
         </FadeIn>
