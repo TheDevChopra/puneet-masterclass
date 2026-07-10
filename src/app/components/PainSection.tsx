@@ -25,36 +25,36 @@ export default function PainSection() {
               {checklist.map((item, index) => (
                 <div key={index} className="outcome-card hover-lift flex items-center gap-4 p-6">
                   <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                  <span className="text-lg font-medium text-foreground">{item}</span>
+                  <span className="text-sm font-medium text-foreground">{item}</span>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="lg:pl-12 scroll-reveal-item space-y-6">
-            <h3 className="text-4xl font-bold text-muted-foreground mb-4">
+            <h3 className="text-2xl font-bold text-muted-foreground mb-4">
               Yet...
             </h3>
             
-            <p className="text-2xl leading-relaxed text-foreground">
+            <p className="text-lg leading-relaxed text-foreground">
               People watch, scroll, and move on.
             </p>
             
-            <p className="text-2xl leading-relaxed text-primary font-bold">
+            <p className="text-lg leading-relaxed text-primary font-bold">
               Very few remember your brand!
             </p>
             
-            <p className="text-xl leading-relaxed text-muted-foreground">
+            <p className="text-base leading-relaxed text-muted-foreground">
               And that's the real problem. Because businesses don't grow when people see them.
             </p>
 
-            <p className="text-2xl leading-relaxed text-foreground">
+            <p className="text-lg leading-relaxed text-foreground">
               They grow when people <span className="gradient-amber font-bold">remember</span> them.
             </p>
 
             <div className="pt-6">
               <Link href="#pricing" className="inline-block w-full sm:w-auto">
-                <button className="w-full sm:w-auto hover-lift group relative overflow-hidden bg-primary text-primary-foreground px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all">
+                <button className="w-full sm:w-auto hover-lift group relative overflow-hidden bg-primary text-primary-foreground px-8 py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all">
                   <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                   <Ticket className="w-5 h-5 relative z-10" />
                   <span className="relative z-10 uppercase tracking-widest">Join for ₹99</span>

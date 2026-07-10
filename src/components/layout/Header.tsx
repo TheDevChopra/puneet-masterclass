@@ -43,13 +43,13 @@ export default function Header() {
         {/* Logo */}
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollTo('hero')}>
           <AppLogo size={36} />
-          <span className="font-display font-bold text-lg tracking-tight text-foreground hidden sm:block">
+          <span className="font-display font-bold text-sm tracking-tight text-foreground hidden sm:block">
             Puneet Kaur Saluja
           </span>
         </div>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-muted-foreground">
+        <div className="hidden md:flex items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
           <button onClick={() => scrollTo('discover')} className="hover:text-foreground transition-colors focus:outline-none">
             What You&apos;ll Learn
           </button>
@@ -58,7 +58,7 @@ export default function Header() {
           </button>
           <button
             onClick={() => scrollTo('pricing')}
-            className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-bold uppercase tracking-widest hover:bg-accent transition-all duration-300 text-xs"
+            className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-bold uppercase tracking-widest hover:bg-accent transition-all duration-300 text-[10px]"
           >
             Join for ₹99
           </button>
@@ -90,15 +90,15 @@ export default function Header() {
       {/* Mobile Menu Overlay */}
       {menuOpen && (
         <div className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 md:hidden">
-          <button onClick={() => scrollTo('discover')} className="text-2xl font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors focus:outline-none">
+          <button onClick={() => scrollTo('discover')} className="text-lg font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors focus:outline-none">
             What You&apos;ll Learn
           </button>
-          <button onClick={() => scrollTo('mentor')} className="text-2xl font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors focus:outline-none">
+          <button onClick={() => scrollTo('mentor')} className="text-lg font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors focus:outline-none">
             About Puneet
           </button>
           <button
             onClick={() => scrollTo('pricing')}
-            className="mt-4 px-10 py-5 bg-primary text-primary-foreground rounded-lg font-bold uppercase tracking-widest text-base hover:bg-accent transition-all"
+            className="mt-4 px-10 py-5 bg-primary text-primary-foreground rounded-lg font-bold uppercase tracking-widest text-sm hover:bg-accent transition-all"
           >
             Join for ₹99
           </button>

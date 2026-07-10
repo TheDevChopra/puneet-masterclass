@@ -32,11 +32,11 @@ function FaqItem({ question, answer }: { question: string, answer: string }) {
         onClick={() => setIsOpen(!isOpen)}
         className="w-full py-6 flex items-center justify-between text-left focus:outline-none"
       >
-        <span className="text-xl font-bold text-foreground pr-8">{question}</span>
+        <span className="text-base font-bold text-foreground pr-8">{question}</span>
         <ChevronDown className="w-6 h-6 text-primary flex-shrink-0 faq-chevron" />
       </button>
       <div className="faq-answer">
-        <p className="text-lg text-muted-foreground leading-relaxed">
+        <p className="text-sm text-muted-foreground leading-relaxed">
           {answer}
         </p>
       </div>
@@ -68,7 +68,7 @@ export default function PricingFaqSection() {
             <div className="relative bg-card rounded-[2rem] z-10 overflow-hidden flex flex-col md:flex-row">
               
               <div className="md:w-3/5 p-10 md:p-14 border-b md:border-b-0 md:border-r border-border bg-card/50 backdrop-blur-sm">
-                <h3 className="text-3xl font-bold mb-8 text-foreground leading-tight">
+                <h3 className="text-xl font-bold mb-8 text-foreground leading-tight">
                   The Psychology Behind Writing — Live Workshop
                 </h3>
                 
@@ -76,24 +76,24 @@ export default function PricingFaqSection() {
                   {includes.map((item, i) => (
                     <div key={i} className="flex items-center gap-4">
                       <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                      <span className="font-medium text-lg text-foreground">{item}</span>
+                      <span className="font-medium text-sm text-foreground">{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
               
               <div className="md:w-2/5 p-10 md:p-14 bg-muted/30 flex flex-col justify-center items-center text-center">
-                <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">Today:</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">Today:</p>
                 <div className="mb-6">
-                  <span className="text-5xl font-bold tracking-tighter gradient-amber">Only ₹199</span>
+                  <span className="text-3xl font-bold tracking-tighter gradient-amber">Only ₹199</span>
                 </div>
                 
-                <p className="text-base text-muted-foreground mb-8">
+                <p className="text-sm text-muted-foreground mb-8">
                   A small investment for an idea that can change the way your audience remembers your brand.
                 </p>
 
                 <Link href="#pricing" className="w-full">
-                  <button className="w-full hover-lift group relative overflow-hidden bg-primary text-primary-foreground py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all">
+                  <button className="w-full hover-lift group relative overflow-hidden bg-primary text-primary-foreground py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all">
                     <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                     <Ticket className="w-5 h-5 relative z-10" />
                     <span className="relative z-10 uppercase tracking-widest">Join Now</span>
@@ -108,10 +108,10 @@ export default function PricingFaqSection() {
         {/* FAQ Section */}
         <div className="grid lg:grid-cols-12 gap-16" id="faq">
           <div className="lg:col-span-5 scroll-reveal-item">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
               Frequently Asked Questions
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Have a different question? Reach out to our support team.
             </p>
           </div>

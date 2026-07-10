@@ -30,13 +30,13 @@ export default function HeroSection() {
               <span className="gradient-amber">Ignored.</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground mb-10 leading-relaxed">
+            <p className="text-base md:text-lg text-muted-foreground mb-10 leading-relaxed">
               And it’s not because it’s bad. Discover the psychology behind communication that makes people remember your brand, trust your message, and choose you.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <Link href="#pricing" className="w-full sm:w-auto">
-                <button className="w-full hover-lift group relative overflow-hidden bg-primary text-primary-foreground px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all">
+                <button className="w-full hover-lift group relative overflow-hidden bg-primary text-primary-foreground px-8 py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all">
                   <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                   <Ticket className="w-5 h-5 relative z-10" />
                   <span className="relative z-10 uppercase tracking-widest">Join Now · ₹99</span>
@@ -44,11 +44,11 @@ export default function HeroSection() {
               </Link>
             </div>
             
-            <div className="mt-8 flex items-center gap-4 text-sm font-medium text-muted-foreground">
+            <div className="mt-8 flex items-center gap-4 text-xs font-medium text-muted-foreground">
               <div className="flex -space-x-3">
-                <div className="w-8 h-8 rounded-full bg-muted border-2 border-background flex items-center justify-center text-xs">P</div>
-                <div className="w-8 h-8 rounded-full bg-muted border-2 border-background flex items-center justify-center text-xs">K</div>
-                <div className="w-8 h-8 rounded-full bg-muted border-2 border-background flex items-center justify-center text-xs">S</div>
+                <div className="w-6 h-6 rounded-full bg-muted border-2 border-background flex items-center justify-center text-[10px]">P</div>
+                <div className="w-6 h-6 rounded-full bg-muted border-2 border-background flex items-center justify-center text-[10px]">K</div>
+                <div className="w-6 h-6 rounded-full bg-muted border-2 border-background flex items-center justify-center text-[10px]">S</div>
               </div>
               <p>By Puneet Kaur Saluja</p>
             </div>

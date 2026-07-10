@@ -17,13 +17,13 @@ export default function DiscoverSection() {
     <section className="py-24 bg-background relative" id="discover">
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal-item">
-          <div className="inline-block px-4 py-2 rounded-full border border-primary/20 bg-primary/10 text-primary font-bold text-xs uppercase tracking-widest mb-6 pulse-dot">
+          <div className="inline-block px-4 py-2 rounded-full border border-primary/20 bg-primary/10 text-primary font-bold text-[10px] uppercase tracking-widest mb-6 pulse-dot">
             The Transformation
           </div>
           <h2 className="text-section-xl font-bold mb-6 text-foreground">
             What You'll Discover
           </h2>
-          <p className="text-2xl text-muted-foreground leading-relaxed">
+          <p className="text-xl text-muted-foreground leading-relaxed">
             By the end of this session, you'll look at marketing completely differently.
           </p>
         </div>
@@ -34,7 +34,7 @@ export default function DiscoverSection() {
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                 <CheckCircle2 className="w-6 h-6 text-primary" />
               </div>
-              <p className="text-lg font-medium text-foreground leading-relaxed">
+              <p className="text-sm font-medium text-foreground leading-relaxed">
                 {item}
               </p>
             </div>

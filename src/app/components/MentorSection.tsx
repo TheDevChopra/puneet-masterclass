@@ -28,12 +28,12 @@ export default function MentorSection() {
               <h2 className="text-section-xl font-bold mb-2 text-foreground">
                 Meet Your Mentor
               </h2>
-              <h3 className="text-3xl font-bold gradient-amber">
+              <h3 className="text-xl font-bold gradient-amber">
                 Puneet Kaur Saluja
               </h3>
             </div>
             
-            <div className="space-y-6 text-xl leading-relaxed text-muted-foreground">
+            <div className="space-y-6 text-base leading-relaxed text-muted-foreground">
               <p>
                 What started as a ₹500 freelance writing project became a nine-year journey into content, branding, advertising, and communication strategy.
               </p>
@@ -52,7 +52,7 @@ export default function MentorSection() {
                 That question led to years of studying consumer behaviour, communication psychology, and brand perception.
               </p>
               
-              <p className="text-2xl font-bold text-foreground pt-4">
+              <p className="text-lg font-bold text-foreground pt-4">
                 Today, Puneet helps businesses move beyond creating content - and start creating communication that people actually remember.
               </p>
             </div>

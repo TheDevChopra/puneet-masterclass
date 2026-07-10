@@ -4,21 +4,21 @@
   --font-sans: var(--font-dm-sans);
   --font-mono: var(--font-dm-sans);
 
-  --color-background: #0D0B08;
-  --color-foreground: #F5F0E8;
-  --color-primary: #F4B400; /* Updated from reference to brand */
-  --color-primary-foreground: #0D0B08;
-  --color-secondary: #1A1710;
-  --color-secondary-foreground: #F5F0E8;
-  --color-accent: #FFC72C; /* Updated from reference to brand */
-  --color-accent-foreground: #0D0B08;
-  --color-muted: #2A2520;
-  --color-muted-foreground: #9A8F80;
-  --color-card: #161310;
-  --color-card-foreground: #F5F0E8;
-  --color-border: rgba(245, 240, 232, 0.1);
-  --color-input: #1A1710;
-  --color-ring: #F4B400; /* Updated to primary */
+  --color-background: #ffffff;
+  --color-foreground: #111827;
+  --color-primary: #F4B400; 
+  --color-primary-foreground: #111827;
+  --color-secondary: #F3F4F6;
+  --color-secondary-foreground: #111827;
+  --color-accent: #FFC72C; 
+  --color-accent-foreground: #111827;
+  --color-muted: #F9FAFB;
+  --color-muted-foreground: #4B5563;
+  --color-card: #ffffff;
+  --color-card-foreground: #111827;
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-input: #F3F4F6;
+  --color-ring: #F4B400;
   
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
@@ -91,13 +91,13 @@
   }
 
   .text-hero-xl {
-    font-size: clamp(3rem, 9vw, 9rem);
+    font-size: clamp(1.5rem, 4.5vw, 4.5rem);
     line-height: 1.0;
     letter-spacing: -0.03em;
   }
 
   .text-section-xl {
-    font-size: clamp(2.2rem, 5vw, 5rem);
+    font-size: clamp(1.1rem, 2.5vw, 2.5rem);
     line-height: 1.1;
     letter-spacing: -0.025em;
   }
@@ -132,12 +132,12 @@
   }
 
   .blob-primary {
-    background: radial-gradient(ellipse at center, rgba(244, 180, 0, 0.18) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(244, 180, 0, 0.12) 0%, transparent 70%);
     filter: blur(60px);
   }
 
   .blob-accent {
-    background: radial-gradient(ellipse at center, rgba(255, 199, 44, 0.1) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(255, 199, 44, 0.08) 0%, transparent 70%);
     filter: blur(80px);
   }
 
@@ -148,7 +148,7 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.03;
+    opacity: 0.02;
   }
 
   .faq-answer {
@@ -176,7 +176,7 @@
   }
 
   .nav-scrolled {
-    background: rgba(13, 11, 8, 0.85) !important;
+    background: rgba(255, 255, 255, 0.85) !important;
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--color-border);
     padding-top: 1rem !important;
