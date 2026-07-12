@@ -29,6 +29,10 @@ export default function Header() {
 
   const scrollTo = (id: string) => {
     setMenuOpen(false);
+    if (typeof window !== 'undefined' && window.location.pathname !== '/') {
+      window.location.href = `/#${id}`;
+      return;
+    }
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };

@@ -5,7 +5,7 @@ import AppImage from '@/components/ui/AppImage';
 
 export default function MentorSection() {
   return (
-    <section className="py-24 bg-background relative border-t be-border overflow-hidden" id="mentor">
+    <section className="py-12 md:py-24 bg-background relative border-t be-border overflow-hidden" id="mentor">
       <div className="absolute top-0 right-0 w-96 h-96 blob-accent opacity-20 pointer-events-none" />
       
       <div className="container mx-auto px-6 max-w-7xl relative z-10">

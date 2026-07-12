@@ -7,7 +7,7 @@ import { Ticket } from 'lucide-react';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen pt-32 pb-24 flex items-center overflow-hidden" id="hero">
+    <section className="relative min-h-screen pt-24 pb-12 md:pt-32 md:pb-24 flex items-center overflow-hidden" id="hero">
       {/* Background Effects */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 blob-primary opacity-60" />

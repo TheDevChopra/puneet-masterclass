@@ -11,7 +11,7 @@ export default function DiscoverSection() {
   ];
 
   return (
-    <section className="py-24 bg-background relative" id="discover">
+    <section className="py-12 md:py-24 bg-background relative" id="discover">
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal-item">
           <div className="inline-block px-4 py-2 rounded-full border border-primary/20 bg-primary/10 text-primary font-bold text-[10px] uppercase tracking-widest mb-6 pulse-dot">

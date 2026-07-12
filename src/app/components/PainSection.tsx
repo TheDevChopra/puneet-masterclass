@@ -11,7 +11,7 @@ export default function PainSection() {
   ];
 
   return (
-    <section className="py-24 bg-background relative border-t be-border overflow-hidden" id="pain">
+    <section className="py-12 md:py-24 bg-background relative border-t be-border overflow-hidden" id="pain">
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           

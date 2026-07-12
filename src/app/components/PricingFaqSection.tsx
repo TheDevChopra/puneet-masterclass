@@ -45,7 +45,7 @@ export default function PricingFaqSection() {
   ];
 
   return (
-    <section className="py-24 bg-background relative" id="pricing">
+    <section className="py-12 md:py-24 bg-background relative" id="pricing">
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         
         {/* Pricing Card */}
