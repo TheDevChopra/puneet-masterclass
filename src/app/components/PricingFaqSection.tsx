@@ -92,7 +92,7 @@ export default function PricingFaqSection() {
                   A small investment for an idea that can change the way your audience remembers your brand.
                 </p>
 
-                <Link href="#pricing" className="w-full">
+                <Link href="/register" className="w-full">
                   <button className="w-full hover-lift group relative overflow-hidden bg-primary text-primary-foreground py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all">
                     <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                     <Ticket className="w-5 h-5 relative z-10" />

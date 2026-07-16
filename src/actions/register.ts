@@ -1,15 +1,13 @@
 "use server";
 
 import { z } from "zod";
-import { v4 as uuidv4 } from "uuid";
-import { createClient } from "@/lib/supabase/server";
 import { PhonePeService } from "@/services/phonepe/phonepe";
 
 // Server-side validation schema
 const registerSchema = z.object({
   fullName: z.string().min(2),
   email: z.string().email(),
-  phone: z.string().regex(/^\+91[6-9]\d{9}$/),
+  phone: z.string().regex(/^\+91\s?\d{10}$/),
   occupation: z.string().min(2),
   goal: z.string().min(1),
   challenge: z.string().optional(),
@@ -20,72 +18,36 @@ export async function processRegistration(formData: z.infer<typeof registerSchem
     // 1. Validate Input
     const validatedData = registerSchema.parse(formData);
 
-    // 2. Init Supabase
-    const supabase = await createClient();
-
-    // 3. Generate IDs
-    const transactionId = `TXN${Date.now()}${Math.floor(Math.random() * 1000)}`;
-    const merchantTransactionId = `MTXN${Date.now()}${Math.floor(Math.random() * 1000)}`;
+    // 2. Generate IDs
+    // Extract 10 digit phone for PhonePe
+    const cleanPhone = validatedData.phone.replace('+91', '').replace(/\s+/g, '');
+    const merchantTransactionId = `MTXN${cleanPhone}${Date.now().toString().slice(-6)}`;
     const WORKSHOP_PRICE = 99; // ₹99
     
-    // 4. Create Registration (Pending)
-    const { data: registration, error: regError } = await (supabase as any)
-      .from('registrations')
-      .insert({
-        full_name: validatedData.fullName,
-        email: validatedData.email,
-        phone: validatedData.phone,
-        occupation: validatedData.occupation,
-        goal: validatedData.goal,
-        challenge: validatedData.challenge,
-        payment_status: 'PENDING',
-        transaction_id: transactionId,
-      })
-      .select('id')
-      .single();
+    const firstName = validatedData.fullName.split(' ')[0];
 
-    if (regError || !registration) {
-      console.error('Registration Error:', regError);
-      throw new Error("Failed to save registration.");
-    }
-
-    // 5. Create Payment Record (Pending)
-    const { error: payError } = await (supabase as any)
-      .from('payments')
-      .insert({
-        registration_id: registration.id,
-        amount: WORKSHOP_PRICE,
-        status: 'PENDING',
-        merchant_transaction_id: merchantTransactionId,
-      });
-
-    if (payError) {
-      console.error('Payment Record Error:', payError);
-      throw new Error("Failed to create payment record.");
-    }
-
-    // 6. Initiate PhonePe Payment
+    // 3. Initiate PhonePe Payment
+    // Note: We encode phone and name in the callback URL so the webhook can retrieve them
+    // since we are no longer using a database to persist this state.
     const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api/payment/status?id=${merchantTransactionId}`;
-    const callbackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api/payment/callback`;
+    const callbackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api/payment/callback?p=${cleanPhone}&n=${encodeURIComponent(firstName)}&e=${encodeURIComponent(validatedData.email)}`;
 
-    // In a real environment with credentials, we would call PhonePe.
-    // Since we rely on ENV vars that might be missing locally, we do a safe check.
     if (!process.env.PHONEPE_MERCHANT_ID || process.env.PHONEPE_MERCHANT_ID === "your-merchant-id") {
       console.log("Mocking PhonePe redirect for local dev");
       return {
         success: true,
-        redirectUrl: `/api/payment/status?id=${merchantTransactionId}&mock=true`, // Simulated redirect
+        redirectUrl: `/api/payment/status?id=${merchantTransactionId}&mock=true`, 
       };
     }
 
     const phonePeResponse = await PhonePeService.createPayment({
       merchantTransactionId: merchantTransactionId,
-      merchantUserId: registration.id, // Using UUID as userId
+      merchantUserId: cleanPhone, // Using phone as userId
       amount: WORKSHOP_PRICE * 100, // PhonePe takes paise
       redirectUrl: redirectUrl,
       redirectMode: 'REDIRECT',
       callbackUrl: callbackUrl,
-      mobileNumber: validatedData.phone.replace('+91', ''),
+      mobileNumber: cleanPhone,
       paymentInstrument: {
         type: 'PAY_PAGE'
       }

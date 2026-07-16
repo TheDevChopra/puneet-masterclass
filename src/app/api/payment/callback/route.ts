@@ -1,11 +1,16 @@
 import { NextResponse } from 'next/server';
 import { PhonePeService } from '@/services/phonepe/phonepe';
-import { createAdminClient } from '@/lib/supabase/server';
-import { AiSensyService } from '@/services/aisensy/aisensy';
+import { submitRegistration } from '@/lib/googleSheets';
+import { MetaWhatsAppService } from '@/services/whatsapp/meta';
 import { EmailService } from '@/services/emails/resend';
 
 export async function POST(req: Request) {
   try {
+    const url = new URL(req.url);
+    const phone = url.searchParams.get('p');
+    const name = url.searchParams.get('n');
+    const email = url.searchParams.get('e');
+
     const body = await req.json();
     const xVerify = req.headers.get('x-verify') || '';
 
@@ -18,66 +23,64 @@ export async function POST(req: Request) {
 
     // 2. Decode Payload
     const decodedPayload = JSON.parse(Buffer.from(body.response, 'base64').toString('utf-8'));
-    const { merchantTransactionId, code, transactionId } = decodedPayload.data;
+    const { code, transactionId } = decodedPayload.data;
 
-    // 3. Init Admin Client (bypasses RLS to update DB)
-    const supabase = createAdminClient() as any;
+    // 3. Determine Status
+    const status = code === 'PAYMENT_SUCCESS' ? 'Paid' : 'Failed';
+    
+    // We need the phone number to identify the row in Google Sheets
+    if (!phone) {
+      console.error('Phone number missing from callback URL');
+      return NextResponse.json({ error: 'Missing identifier' }, { status: 400 });
+    }
 
-    // Log the event
-    await supabase.from('events').insert({
-      event_type: 'PHONEPE_CALLBACK',
-      payload: decodedPayload,
-      status: code
+    // 4. Update Google Sheets
+    const updateResponse = await submitRegistration({
+      action: 'update',
+      phone: `+91${phone}`, // Restore the +91 that we stripped
+      paymentStatus: status,
+      transactionId: transactionId || '',
     });
 
-    // 4. Update Payment
-    const status = code === 'PAYMENT_SUCCESS' ? 'SUCCESS' : 'FAILED';
-    
-    const { data: payment, error: payError } = await supabase
-      .from('payments')
-      .update({
-        status,
-        phonepe_transaction_id: transactionId,
-        raw_response: decodedPayload,
-      })
-      .eq('merchant_transaction_id', merchantTransactionId)
-      .select('registration_id')
-      .single();
-
-    if (payError || !payment) {
-      console.error('Failed to update payment:', payError);
-      return NextResponse.json({ error: 'Payment not found' }, { status: 404 });
+    if (!updateResponse.success) {
+      console.error('Failed to update Google Sheets:', updateResponse.message);
+      // We still return 200 so PhonePe doesn't retry endlessly, but log the error.
+      // In a real app we might want to return 500 so they retry, but Google Sheets might just be down.
     }
 
-    // 5. Update Registration
-    const { data: registration, error: regError } = await supabase
-      .from('registrations')
-      .update({ payment_status: status })
-      .eq('id', payment.registration_id)
-      .select('*')
-      .single();
-
-    if (regError || !registration) {
-      console.error('Failed to update registration:', regError);
-      return NextResponse.json({ error: 'Registration not found' }, { status: 404 });
-    }
-
-    // 6. Trigger Automations if Success
-    if (status === 'SUCCESS') {
+    // 5. Trigger Automations if Success
+    if (status === 'Paid' && name) {
       try {
-        // Run automations concurrently without blocking the callback response
-        Promise.allSettled([
-          EmailService.sendConfirmation(registration.email, registration.full_name),
-          AiSensyService.sendConfirmation(registration.phone, registration.full_name)
-        ]).then(results => {
-          results.forEach(res => {
-            if (res.status === 'rejected') {
-              console.error('Automation failed:', res.reason);
-            }
-          });
+        const decodedName = decodeURIComponent(name);
+        let whatsappStatus = 'Sent';
+        
+        // Dispatch WhatsApp and Email concurrently
+        const emailPromise = email ? EmailService.sendConfirmation(decodeURIComponent(email), decodedName) : Promise.resolve(null);
+        
+        const [waResult, emailResult] = await Promise.allSettled([
+          MetaWhatsAppService.sendConfirmation(`+91${phone}`, decodedName),
+          emailPromise
+        ]);
+
+        if (waResult.status === 'rejected' || !waResult.value) {
+          whatsappStatus = 'Failed';
+        }
+
+        // 6. Update Google Sheets with WhatsApp Status
+        await submitRegistration({
+          action: 'update',
+          phone: `+91${phone}`,
+          whatsappStatus: whatsappStatus,
         });
+        
       } catch (automationError) {
         console.error('Automation dispatch error:', automationError);
+        // Fallback update for failure
+        await submitRegistration({
+          action: 'update',
+          phone: `+91${phone}`,
+          whatsappStatus: 'Failed',
+        });
       }
     }
 
