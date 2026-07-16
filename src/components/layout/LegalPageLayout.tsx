@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 interface LegalPageLayoutProps {
   title: string;
   effectiveDate: string;
-  subtitle?: string;
+  subtitle?: ReactNode;
   children: ReactNode;
   toc?: { id: string; title: string }[];
 }

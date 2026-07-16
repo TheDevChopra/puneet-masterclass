@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
     <LegalPageLayout
       title="Privacy Policy"
       effectiveDate="16 July 2026"
-      subtitle='At Puneet Kaur Saluja (operated under the registered business name Contentatia) ("we", "our", "us"), we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, and protect your information when you visit puneetkaursaluja.com, register for our workshops, or use any of our products or services.'
+      subtitle={<>At <strong>Puneet Kaur Saluja</strong> (operated under the registered business name <strong>Contentatia</strong>) ("we", "our", "us"), we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, and protect your information when you visit <strong>puneetkaursaluja.com</strong>, register for our workshops, or use any of our products or services.</>}
       toc={toc}
     >
       <p>
@@ -46,7 +46,7 @@ export default function PrivacyPolicyPage() {
         <li>Any information voluntarily shared through forms, emails, or customer support</li>
       </ul>
       <p>
-        We do not collect or store your debit card, credit card, UPI PIN, banking credentials, or other sensitive payment information. Payments are securely processed through our payment partner, PhonePe.
+        We do <strong>not</strong> collect or store your debit card, credit card, UPI PIN, banking credentials, or other sensitive payment information. Payments are securely processed through our payment partner, PhonePe.
       </p>
 
       <h2 id="section-2">2. How We Use Your Information</h2>
@@ -63,7 +63,7 @@ export default function PrivacyPolicyPage() {
 
       <h2 id="section-3">3. Marketing Communication</h2>
       <p>
-        By registering for our workshops or submitting your details, you consent to receive communication from Puneet Kaur Saluja (Contentatia) through:
+        By registering for our workshops or submitting your details, you consent to receive communication from <strong>Puneet Kaur Saluja (Contentatia)</strong> through:
       </p>
       <ul>
         <li>Email</li>
@@ -79,16 +79,18 @@ export default function PrivacyPolicyPage() {
       </p>
 
       <h2 id="section-4">4. Payment Information</h2>
+      <p>All payments are securely processed through trusted third-party payment providers.</p>
       <p>
-        All payments are securely processed through trusted third-party payment providers. Contentatia (Puneet Kaur Saluja) does not store your payment card details, banking credentials, or UPI PIN.
+        <strong>Contentatia (Puneet Kaur Saluja)</strong> does not store your payment card details, banking credentials, or UPI PIN.
       </p>
       <p>
         Please refer to your payment provider's privacy policy for information regarding their data handling practices.
       </p>
 
       <h2 id="section-5">5. Workshop Platforms</h2>
+      <p>Our live workshops are conducted through Zoho Webinar.</p>
       <p>
-        Our live workshops are conducted through Zoho Webinar. By registering for a workshop, you acknowledge that your name and email address may be shared with Zoho Webinar solely for the purpose of enabling your participation in the event.
+        By registering for a workshop, you acknowledge that your name and email address may be shared with Zoho Webinar solely for the purpose of enabling your participation in the event.
       </p>
 
       <h2 id="section-6">6. Cookies</h2>
@@ -112,7 +114,8 @@ export default function PrivacyPolicyPage() {
       </p>
 
       <h2 id="section-8">8. Data Sharing</h2>
-      <p>We do not sell, rent, or trade your personal information. Your information may only be shared with trusted service providers when necessary to:</p>
+      <p>We do not sell, rent, or trade your personal information.</p>
+      <p>Your information may only be shared with trusted service providers when necessary to:</p>
       <ul>
         <li>Process payments</li>
         <li>Deliver webinars</li>
@@ -148,30 +151,33 @@ export default function PrivacyPolicyPage() {
 
       <h2 id="section-11">11. Third-Party Links</h2>
       <p>
-        Our website may contain links to third-party websites or platforms. We are not responsible for the privacy practices or content of such external websites. We encourage you to review their respective privacy policies before sharing any personal information.
+        Our website may contain links to third-party websites or platforms.
+      </p>
+      <p>
+        We are not responsible for the privacy practices or content of such external websites. We encourage you to review their respective privacy policies before sharing any personal information.
       </p>
 
       <h2 id="section-12">12. Children's Privacy</h2>
       <p>
-        Our workshops and services are intended for individuals who are at least 18 years of age. We do not knowingly collect personal information from children.
+        Our workshops and services are intended for individuals who are at least 18 years of age.
       </p>
+      <p>We do not knowingly collect personal information from children.</p>
 
       <h2 id="section-13">13. Changes to this Privacy Policy</h2>
+      <p>We may update this Privacy Policy from time to time.</p>
       <p>
-        We may update this Privacy Policy from time to time. Any changes will be published on this page with the revised effective date. Continued use of our website or services constitutes acceptance of the updated Privacy Policy.
+        Any changes will be published on this page with the revised effective date. Continued use of our website or services constitutes acceptance of the updated Privacy Policy.
       </p>
 
       <h2 id="section-14">14. Contact Us</h2>
       <p>
         If you have any questions regarding this Privacy Policy or the way we handle your information, please contact us:
       </p>
-      <ul>
-        <li><strong>Puneet Kaur Saluja (Contentatia)</strong></li>
-        <li><strong>Website:</strong> puneetkaursaluja.com</li>
-        <li><strong>Email:</strong> support@puneetkaursaluja.com</li>
-        <li><strong>Phone:</strong> +91 74289 21087</li>
-        <li><strong>Location:</strong> New Delhi, India</li>
-      </ul>
+      <p><strong>Puneet Kaur Saluja (Contentatia)</strong></p>
+      <p>Website: puneetkaursaluja.com</p>
+      <p>Email: <a href="mailto:support@puneetkaursaluja.com">support@puneetkaursaluja.com</a></p>
+      <p>Phone: +91 74289 21087</p>
+      <p>Location: New Delhi, India</p>
     </LegalPageLayout>
   );
 }

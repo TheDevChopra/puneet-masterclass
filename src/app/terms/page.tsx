@@ -30,7 +30,7 @@ export default function TermsPage() {
     <LegalPageLayout
       title="Terms & Conditions"
       effectiveDate="16 July 2026"
-      subtitle='Welcome to puneetkaursaluja.com, owned and operated by Puneet Kaur Saluja, under the registered business name Contentatia ("we", "our", "us").'
+      subtitle={<>Welcome to <strong>puneetkaursaluja.com</strong>, owned and operated by <strong>Puneet Kaur Saluja</strong>, under the registered business name <strong>Contentatia</strong> ("we", "our", "us").</>}
       toc={toc}
     >
       <p>
@@ -58,15 +58,18 @@ export default function TermsPage() {
       </p>
 
       <h2 id="section-3">3. Webinar Access</h2>
-      <p>Our workshops are conducted live through Zoho Webinar.</p>
+      <p>Our workshops are conducted live through <strong>Zoho Webinar</strong>.</p>
       <p>
-        Participants are solely responsible for joining the webinar on time using the access details shared by us. Failure to attend due to internet issues, device incompatibility, incorrect email details, or personal scheduling conflicts shall not make the participant eligible for a refund or compensation.
+        Participants are solely responsible for joining the webinar on time using the access details shared by us.
       </p>
-      <p>Workshop recordings are not provided unless explicitly stated otherwise.</p>
+      <p>
+        Failure to attend due to internet issues, device incompatibility, incorrect email details, or personal scheduling conflicts shall not make the participant eligible for a refund or compensation.
+      </p>
+      <p>Workshop recordings are <strong>not provided</strong> unless explicitly stated otherwise.</p>
 
       <h2 id="section-4">4. Intellectual Property</h2>
       <p>
-        All workshop content, presentations, frameworks, exercises, templates, worksheets, videos, graphics, branding, and written material are the exclusive intellectual property of Puneet Kaur Saluja (Contentatia) unless otherwise stated.
+        All workshop content, presentations, frameworks, exercises, templates, worksheets, videos, graphics, branding, and written material are the exclusive intellectual property of <strong>Puneet Kaur Saluja (Contentatia)</strong> unless otherwise stated.
       </p>
       <p>
         Your purchase grants you a limited, non-transferable licence to access the workshop for your personal learning only.
@@ -83,11 +86,13 @@ export default function TermsPage() {
       <h2 id="section-5">5. Sharing of Access</h2>
       <p>Each registration is valid for one participant only.</p>
       <p>
-        Sharing webinar links, login credentials, or allowing multiple individuals to attend using a single registration is strictly prohibited. We reserve the right to remove participants found violating this policy without refund.
+        Sharing webinar links, login credentials, or allowing multiple individuals to attend using a single registration is strictly prohibited.
       </p>
+      <p>We reserve the right to remove participants found violating this policy without refund.</p>
 
       <h2 id="section-6">6. Participant Conduct</h2>
-      <p>We strive to maintain a respectful learning environment. Participants are expected to:</p>
+      <p>We strive to maintain a respectful learning environment.</p>
+      <p>Participants are expected to:</p>
       <ul>
         <li>Maintain respectful behaviour throughout the session.</li>
         <li>Refrain from abusive, discriminatory, offensive, or disruptive conduct.</li>
@@ -104,7 +109,7 @@ export default function TermsPage() {
 
       <h2 id="section-8">8. Refunds & Cancellations</h2>
       <p>
-        All purchases are subject to our Refund & Cancellation Policy, available separately on this website.
+        All purchases are subject to our <strong>Refund & Cancellation Policy</strong>, available separately on this website.
       </p>
       <p>
         By completing your purchase, you acknowledge that you have read and accepted that policy.
@@ -150,7 +155,10 @@ export default function TermsPage() {
       <h2 id="section-14">14. Changes to These Terms</h2>
       <p>We reserve the right to update or modify these Terms & Conditions at any time.</p>
       <p>
-        The updated version will be published on this page along with the revised effective date. Continued use of our website or services after such changes constitutes acceptance of the revised Terms.
+        The updated version will be published on this page along with the revised effective date.
+      </p>
+      <p>
+        Continued use of our website or services after such changes constitutes acceptance of the revised Terms.
       </p>
 
       <h2 id="section-15">15. Governing Law</h2>
@@ -158,20 +166,18 @@ export default function TermsPage() {
         These Terms & Conditions shall be governed by and interpreted in accordance with the laws of India.
       </p>
       <p>
-        Any disputes arising out of or relating to these Terms shall be subject to the exclusive jurisdiction of the competent courts in New Delhi, India.
+        Any disputes arising out of or relating to these Terms shall be subject to the exclusive jurisdiction of the competent courts in <strong>New Delhi, India</strong>.
       </p>
 
       <h2 id="section-16">16. Contact Us</h2>
       <p>
         For any questions regarding these Terms & Conditions, please contact:
       </p>
-      <ul>
-        <li><strong>Puneet Kaur Saluja (Contentatia)</strong></li>
-        <li><strong>Website:</strong> puneetkaursaluja.com</li>
-        <li><strong>Email:</strong> support@puneetkaursaluja.com</li>
-        <li><strong>Phone:</strong> +91 74289 21087</li>
-        <li><strong>Location:</strong> New Delhi, India</li>
-      </ul>
+      <p><strong>Puneet Kaur Saluja (Contentatia)</strong></p>
+      <p>Website: puneetkaursaluja.com</p>
+      <p>Email: <a href="mailto:support@puneetkaursaluja.com">support@puneetkaursaluja.com</a></p>
+      <p>Phone: +91 74289 21087</p>
+      <p>Location: New Delhi, India</p>
     </LegalPageLayout>
   );
 }
