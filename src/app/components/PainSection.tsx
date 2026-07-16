@@ -6,8 +6,10 @@ import { CheckCircle2, Ticket } from 'lucide-react';
 
 export default function PainSection() {
   const checklist = [
-    "Posting consistently without results.",
-    "Following trends blindly.",
+    "Posting consistently.",
+    "Trying AI tools.",
+    "Following content trends.",
+    "Creating \"valuable\" content.",
   ];
 
   return (
@@ -35,7 +37,7 @@ export default function PainSection() {
             </h3>
             
             <p className="text-lg leading-relaxed text-foreground">
-              People scroll and move on.
+              People watch, scroll, and move on.
             </p>
             
             <p className="text-lg leading-relaxed text-primary font-bold">
@@ -43,7 +45,11 @@ export default function PainSection() {
             </p>
             
             <p className="text-base leading-relaxed text-muted-foreground">
-              Businesses grow when people <span className="gradient-amber font-bold">remember</span> them, not just see them.
+              And that's the real problem. Because businesses don't grow when people see them.
+            </p>
+
+            <p className="text-lg leading-relaxed text-foreground">
+              They grow when people <span className="gradient-amber font-bold">remember</span> them.
             </p>
 
             <div className="pt-6">

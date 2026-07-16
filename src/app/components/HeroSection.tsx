@@ -31,7 +31,7 @@ export default function HeroSection() {
             </h1>
             
             <p className="text-base md:text-lg text-muted-foreground mb-10 leading-relaxed">
-              Discover the psychology behind communication that makes people remember your brand, trust your message, and choose you.
+              And it’s not because it’s bad. Discover the psychology behind communication that makes people remember your brand, trust your message, and choose you.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">

@@ -7,11 +7,19 @@ import { CheckCircle2, ChevronDown, Ticket } from 'lucide-react';
 const faqs = [
   {
     question: "Is this only for writers?",
-    answer: "No, this is for anyone who communicates with an audience or clients.",
+    answer: "Not at all. If your work involves communicating with customers, clients, or an audience, this workshop is for you.",
   },
   {
     question: "Will this be useful if I'm just starting out?",
-    answer: "Absolutely. The principles apply at every stage of business.",
+    answer: "Absolutely. Whether you're building a personal brand or scaling a business, the principles you'll learn apply at every stage.",
+  },
+  {
+    question: "Is this about copywriting?",
+    answer: "No. This goes beyond writing. It's about understanding the psychology behind communication so every piece of content, every campaign, and every conversation creates a stronger impact.",
+  },
+  {
+    question: "Will there be practical examples?",
+    answer: "Yes. The session includes real brand examples and practical insights that you can apply immediately.",
   }
 ];
 
