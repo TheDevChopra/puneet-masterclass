@@ -4,27 +4,55 @@ import { useState, useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { useRouter } from "next/navigation"
 import { Loader2 } from "lucide-react"
-import { Button } from "../ui/button"
 import { processRegistration } from "@/actions/register"
+import { motion, AnimatePresence } from "framer-motion"
+import Link from "next/link"
+
+const occupationOptions = [
+  "Student",
+  "Business Owner",
+  "Founder",
+  "Coach",
+  "Consultant",
+  "Freelancer",
+  "Content Creator",
+  "Marketing Professional",
+  "Corporate Employee",
+  "Agency Owner",
+  "Teacher",
+  "Other"
+] as const;
+
+const joiningReasons = [
+  "I want people to remember my brand.",
+  "I want to improve my communication skills.",
+  "I want to create better content.",
+  "I want to build my personal brand.",
+  "I want to grow my business.",
+  "I want to improve my marketing.",
+  "I want to understand consumer psychology.",
+  "I want to become a better writer.",
+  "I want to increase conversions.",
+  "I am curious to learn.",
+  "Other"
+] as const;
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: "Full name is required." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
-  phone: z.string().regex(/^\+91[6-9]\d{9}$/, { message: "Please enter a valid Indian phone number starting with +91" }),
-  occupation: z.string().min(2, { message: "Occupation is required." }),
-  goal: z.string().min(1, { message: "Please select a primary goal." }),
+  phone: z.string().regex(/^\+91\s?\d{10}$/, { message: "Please enter a valid Indian phone number starting with +91" }),
+  occupation: z.enum(occupationOptions, { message: "Occupation is required." }),
+  goal: z.enum(joiningReasons, { message: "Please select a reason for joining." }),
   challenge: z.string().optional(),
   terms: z.boolean().refine(val => val === true, {
-    message: "You must agree to the Privacy Policy, Terms & Conditions and Refund Policy.",
+    message: "You must agree to the Terms & Conditions, Privacy Policy, and Refund Policy.",
   }),
 })
 
 type FormValues = z.infer<typeof formSchema>
 
 export function RegisterForm() {
-  const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [errorMsg, setErrorMsg] = useState("")
 
@@ -36,6 +64,12 @@ export function RegisterForm() {
     resolver: zodResolver(formSchema),
     mode: "onChange",
     defaultValues: {
+      fullName: "",
+      email: "",
+      phone: "",
+      occupation: undefined,
+      goal: undefined,
+      challenge: "",
       terms: false,
     }
   })
@@ -43,135 +77,203 @@ export function RegisterForm() {
   const onSubmit = (data: FormValues) => {
     setErrorMsg("")
     startTransition(async () => {
-      const result = await processRegistration(data)
-      
-      if (result.success && result.redirectUrl) {
-        window.location.href = result.redirectUrl
-      } else {
-        setErrorMsg(result.message || "Failed to initiate payment. Please try again.")
+      try {
+        // 1. Submit to Google Sheets via Next.js API Route
+        const sheetResponse = await fetch('/api/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            fullName: data.fullName,
+            email: data.email,
+            phone: data.phone,
+            occupation: data.occupation,
+            goal: data.goal,
+            challenge: data.challenge,
+          }),
+        });
+
+        const sheetResult = await sheetResponse.json();
+
+        if (!sheetResponse.ok || !sheetResult.success) {
+          setErrorMsg(sheetResult.message || "Failed to submit registration. Please try again.");
+          return; // Do not redirect to PhonePe
+        }
+
+        // 2. If Google Sheets submission is successful, continue to PhonePe
+        const result = await processRegistration(data)
+        
+        if (result.success && result.redirectUrl) {
+          window.location.href = result.redirectUrl
+        } else {
+          setErrorMsg(result.message || "Failed to initiate payment. Please try again.")
+        }
+      } catch (error: any) {
+        console.error("Submission Error:", error);
+        setErrorMsg("An unexpected error occurred. Please try again.");
       }
     })
   }
 
-  const goals = [
-    "Build a Personal Brand",
-    "Grow My Business",
-    "Improve My Writing",
-    "Create Better Content",
-    "Increase Sales Through Communication",
-    "Become a Better Copywriter",
-    "Learn Consumer Psychology",
-    "Build Trust With My Audience",
-    "Improve Marketing Skills",
-    "Freelancing & Client Acquisition",
-    "Content Strategy",
-    "Career Growth",
-    "Just Curious / Learning",
-    "Other",
-  ]
+  const inputClassName = "w-full min-h-[3.5rem] px-4 rounded-xl border border-gray-200 bg-gray-50/50 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500/50 focus:bg-white transition-all text-base";
+  const labelClassName = "block text-sm font-semibold text-gray-900 mb-2";
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {errorMsg && (
-        <div className="p-4 bg-red-50 text-red-600 rounded-lg text-sm font-medium">
-          {errorMsg}
-        </div>
-      )}
-      <div className="space-y-2">
-        <label className="text-sm font-semibold text-[var(--color-foreground)]">Full Name <span className="text-red-500">*</span></label>
+    <motion.form 
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.1 }}
+      onSubmit={handleSubmit(onSubmit)} 
+      className="space-y-6"
+    >
+      <AnimatePresence>
+        {errorMsg && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+            animate={{ opacity: 1, height: "auto", marginBottom: 24 }}
+            exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+            className="p-4 bg-red-50 text-red-600 rounded-xl text-sm font-medium border border-red-100 overflow-hidden"
+          >
+            {errorMsg}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="space-y-1">
+        <label className={labelClassName}>Full Name <span className="text-amber-500">*</span></label>
         <input
           {...register("fullName")}
-          placeholder="Enter your full name"
-          className="w-full h-12 px-4 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-foreground)] placeholder:text-[var(--color-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition-all"
+          placeholder="John Doe"
+          className={inputClassName}
         />
-        {errors.fullName && <p className="text-sm text-red-500">{errors.fullName.message}</p>}
+        <AnimatePresence>
+          {errors.fullName && (
+            <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} className="text-sm text-red-500 mt-1">{errors.fullName.message}</motion.p>
+          )}
+        </AnimatePresence>
       </div>
 
-      <div className="space-y-2">
-        <label className="text-sm font-semibold text-[var(--color-foreground)]">Email Address <span className="text-red-500">*</span></label>
+      <div className="space-y-1">
+        <label className={labelClassName}>Email Address <span className="text-amber-500">*</span></label>
         <input
           {...register("email")}
           type="email"
-          placeholder="Enter your email"
-          className="w-full h-12 px-4 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-foreground)] placeholder:text-[var(--color-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition-all"
+          placeholder="john@example.com"
+          className={inputClassName}
         />
-        {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+        <AnimatePresence>
+          {errors.email && (
+            <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} className="text-sm text-red-500 mt-1">{errors.email.message}</motion.p>
+          )}
+        </AnimatePresence>
       </div>
 
-      <div className="space-y-2">
-        <label className="text-sm font-semibold text-[var(--color-foreground)]">Phone Number <span className="text-red-500">*</span></label>
+      <div className="space-y-1">
+        <label className={labelClassName}>Phone Number <span className="text-amber-500">*</span></label>
         <input
           {...register("phone")}
-          placeholder="+91 XXXXX XXXXX"
-          className="w-full h-12 px-4 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-foreground)] placeholder:text-[var(--color-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition-all"
+          placeholder="+91 9876543210"
+          className={inputClassName}
         />
-        {errors.phone && <p className="text-sm text-red-500">{errors.phone.message}</p>}
+        <AnimatePresence>
+          {errors.phone && (
+            <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} className="text-sm text-red-500 mt-1">{errors.phone.message}</motion.p>
+          )}
+        </AnimatePresence>
       </div>
 
-      <div className="space-y-2">
-        <label className="text-sm font-semibold text-[var(--color-foreground)]">Occupation <span className="text-red-500">*</span></label>
-        <input
-          {...register("occupation")}
-          placeholder="Student, Founder, Freelancer, Marketer..."
-          className="w-full h-12 px-4 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-foreground)] placeholder:text-[var(--color-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition-all"
-        />
-        {errors.occupation && <p className="text-sm text-red-500">{errors.occupation.message}</p>}
-      </div>
-
-      <div className="space-y-2">
-        <label className="text-sm font-semibold text-[var(--color-foreground)]">Primary Goal <span className="text-red-500">*</span></label>
+      <div className="space-y-1">
+        <label className={labelClassName}>Occupation <span className="text-amber-500">*</span></label>
         <select
-          {...register("goal")}
-          className="w-full h-12 px-4 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition-all appearance-none"
+          {...register("occupation")}
+          defaultValue=""
+          className={`${inputClassName} appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%239CA3AF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[position:right_1rem_center] bg-[length:12px_auto]`}
         >
-          <option value="">Select your primary goal...</option>
-          {goals.map(goal => (
-            <option key={goal} value={goal}>{goal}</option>
+          <option value="" disabled hidden>Select your occupation...</option>
+          {occupationOptions.map(occ => (
+            <option key={occ} value={occ}>{occ}</option>
           ))}
         </select>
-        {errors.goal && <p className="text-sm text-red-500">{errors.goal.message}</p>}
+        <AnimatePresence>
+          {errors.occupation && (
+            <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} className="text-sm text-red-500 mt-1">{errors.occupation.message}</motion.p>
+          )}
+        </AnimatePresence>
       </div>
 
-      <div className="space-y-2">
-        <label className="text-sm font-semibold text-[var(--color-foreground)]">What is your biggest communication or marketing challenge right now?</label>
+      <div className="space-y-1">
+        <label className={labelClassName}>Why are you joining this workshop? <span className="text-amber-500">*</span></label>
+        <select
+          {...register("goal")}
+          defaultValue=""
+          className={`${inputClassName} appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%239CA3AF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[position:right_1rem_center] bg-[length:12px_auto]`}
+        >
+          <option value="" disabled hidden>Select your primary reason...</option>
+          {joiningReasons.map(reason => (
+            <option key={reason} value={reason}>{reason}</option>
+          ))}
+        </select>
+        <AnimatePresence>
+          {errors.goal && (
+            <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} className="text-sm text-red-500 mt-1">{errors.goal.message}</motion.p>
+          )}
+        </AnimatePresence>
+      </div>
+
+      <div className="space-y-1">
+        <label className={labelClassName}>What is your biggest communication challenge? <span className="text-gray-400 font-normal">(Optional)</span></label>
         <textarea
           {...register("challenge")}
           placeholder="Tell us what you're struggling with..."
-          className="w-full h-32 p-4 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-foreground)] placeholder:text-[var(--color-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition-all resize-none"
+          className={`${inputClassName} py-4 min-h-[100px] resize-none`}
         />
       </div>
 
-      <div className="flex items-start gap-3 pt-2">
-        <input
-          type="checkbox"
-          id="terms"
-          {...register("terms")}
-          className="mt-1 w-4 h-4 rounded border-[var(--color-border)] text-[var(--color-primary)] focus:ring-[var(--color-primary)]"
-        />
-        <label htmlFor="terms" className="text-sm text-[var(--color-muted-foreground)] leading-tight">
-          I have read and agree to the Privacy Policy, Terms & Conditions and Refund Policy.
-        </label>
+      <div className="pt-2">
+        <div className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            id="terms"
+            {...register("terms")}
+            className="mt-1 w-5 h-5 rounded border-gray-300 text-amber-500 focus:ring-amber-500/30 transition-all cursor-pointer accent-amber-500"
+          />
+          <label htmlFor="terms" className="text-sm text-gray-500 leading-relaxed cursor-pointer select-none">
+            By continuing, you agree to our{' '}
+            <Link href="/terms" className="text-gray-900 font-semibold underline decoration-gray-300 underline-offset-4 hover:decoration-amber-500 transition-colors">Terms & Conditions</Link>,{' '}
+            <Link href="/privacy" className="text-gray-900 font-semibold underline decoration-gray-300 underline-offset-4 hover:decoration-amber-500 transition-colors">Privacy Policy</Link>, and{' '}
+            <Link href="/refund-policy" className="text-gray-900 font-semibold underline decoration-gray-300 underline-offset-4 hover:decoration-amber-500 transition-colors">Refund Policy</Link>.
+          </label>
+        </div>
+        <AnimatePresence>
+          {errors.terms && (
+            <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} className="text-sm text-red-500 mt-2">{errors.terms.message}</motion.p>
+          )}
+        </AnimatePresence>
       </div>
 
-      <Button
-        type="submit"
-        disabled={!isValid || isPending}
-        size="lg"
-        className="w-full h-14 text-lg font-bold shadow-md hover:shadow-xl transition-all duration-300 mt-4 disabled:opacity-50 disabled:hover:translate-y-0"
-      >
-        {isPending ? (
-          <>
-            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-            Redirecting to Secure Checkout...
-          </>
-        ) : (
-          "Continue to Payment →"
-        )}
-      </Button>
-      
-      <p className="text-xs text-center text-[var(--color-muted-foreground)] mt-4">
-        By continuing, you agree to our Terms & Conditions, Privacy Policy, and Refund Policy.
-      </p>
-    </form>
+      <div className="pt-4">
+        <button
+          type="submit"
+          disabled={!isValid || isPending}
+          className="relative w-full h-14 rounded-xl font-bold text-lg overflow-hidden transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group bg-gray-900 text-white hover:bg-gray-800 disabled:hover:bg-gray-900"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-amber-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none" />
+          <div className="relative flex items-center justify-center gap-2">
+            {isPending ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                <span className="tracking-wide">Securely Processing...</span>
+              </>
+            ) : (
+              <>
+                <span className="tracking-wide">Continue to Payment</span>
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </>
+            )}
+          </div>
+        </button>
+      </div>
+    </motion.form>
   )
 }
