@@ -34,8 +34,9 @@ export default function Footer() {
         {/* Copyright */}
         <p className="text-[10px] font-medium text-muted-foreground flex items-center justify-center gap-1 md:justify-start flex-wrap">
           © 2026 Puneet Kaur Saluja · 
-          <Link href="/privacy-policy" className="hover:text-foreground hover:underline transition-all">Privacy Policy</Link> · 
-          <Link href="/terms-conditions" className="hover:text-foreground hover:underline transition-all">Terms & Conditions</Link>
+          <Link href="/privacy" className="hover:text-foreground hover:underline transition-all">Privacy Policy</Link> · 
+          <Link href="/terms" className="hover:text-foreground hover:underline transition-all">Terms & Conditions</Link> · 
+          <Link href="/refund-policy" className="hover:text-foreground hover:underline transition-all">Refund Policy</Link>
         </p>
       </div>
     </footer>
