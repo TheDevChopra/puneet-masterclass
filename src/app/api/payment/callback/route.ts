@@ -71,15 +71,26 @@ export async function POST(req: Request) {
         // Dispatch WhatsApp and Email concurrently
         const emailPromise = email ? EmailService.sendConfirmation(decodeURIComponent(email), decodedName) : Promise.resolve(null);
         
-        const [waResult, emailResult] = await Promise.allSettled([
-          MetaWhatsAppService.sendConfirmation(`+91${phone}`, decodedName),
-          emailPromise
-        ]);
+        let waResult;
+        if (!process.env.META_ACCESS_TOKEN) {
+          console.log(`[CALLBACK API - ${requestId}] META_ACCESS_TOKEN missing. Skipping WhatsApp flow.`);
+          waResult = { status: 'rejected' };
+          whatsappStatus = 'Skipped';
+        } else {
+          waResult = await MetaWhatsAppService.sendConfirmation(`+91${phone}`, decodedName);
+          if (!waResult) {
+            waResult = { status: 'rejected' };
+          } else {
+            waResult = { status: 'fulfilled', value: waResult };
+          }
+        }
 
-        if (waResult.status === 'rejected' || !waResult.value) {
+        const [emailResult] = await Promise.allSettled([emailPromise]);
+
+        if (waResult.status === 'rejected' && whatsappStatus !== 'Skipped') {
           console.error(`[CALLBACK API - ${requestId}] WhatsApp automation failed.`);
           whatsappStatus = 'Failed';
-        } else {
+        } else if (whatsappStatus !== 'Skipped') {
           console.log(`[CALLBACK API - ${requestId}] WhatsApp automation succeeded.`);
         }
 

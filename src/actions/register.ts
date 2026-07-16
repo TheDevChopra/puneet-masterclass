@@ -33,10 +33,10 @@ export async function processRegistration(formData: z.infer<typeof registerSchem
     const callbackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api/payment/callback?p=${cleanPhone}&n=${encodeURIComponent(firstName)}&e=${encodeURIComponent(validatedData.email)}`;
 
     if (!process.env.PHONEPE_MERCHANT_ID || process.env.PHONEPE_MERCHANT_ID === "your-merchant-id") {
-      console.log("Mocking PhonePe redirect for local dev");
+      console.log("PhonePe credentials missing. Skipping payment flow and redirecting to thank you page.");
       return {
         success: true,
-        redirectUrl: `/api/payment/status?id=${merchantTransactionId}&mock=true`, 
+        redirectUrl: `/thank-you`, 
       };
     }
 
