@@ -101,14 +101,8 @@ export function RegisterForm() {
           return; // Do not redirect to PhonePe
         }
 
-        // 2. If Google Sheets submission is successful, continue to PhonePe
-        const result = await processRegistration(data)
-        
-        if (result.success && result.redirectUrl) {
-          window.location.href = result.redirectUrl
-        } else {
-          setErrorMsg(result.message || "Failed to initiate payment. Please try again.")
-        }
+        // 2. Do not attempt PhonePe yet per instructions, just redirect to /thank-you
+        window.location.href = "/thank-you";
       } catch (error: any) {
         console.error("Submission Error:", error);
         setErrorMsg("An unexpected error occurred. Please try again.");
