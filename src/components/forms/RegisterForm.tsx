@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useRouter } from "next/navigation"
-import Link from "next/link"
 import { Loader2 } from "lucide-react"
 import { Button } from "../ui/button"
 import { processRegistration } from "@/actions/register"
@@ -150,7 +149,7 @@ export function RegisterForm() {
           className="mt-1 w-4 h-4 rounded border-[var(--color-border)] text-[var(--color-primary)] focus:ring-[var(--color-primary)]"
         />
         <label htmlFor="terms" className="text-sm text-[var(--color-muted-foreground)] leading-tight">
-          I have read and agree to the <Link href="/privacy" className="text-[var(--color-primary)] hover:underline">Privacy Policy</Link>, <Link href="/terms" className="text-[var(--color-primary)] hover:underline">Terms & Conditions</Link> and <Link href="/refund-policy" className="text-[var(--color-primary)] hover:underline">Refund Policy</Link>.
+          I have read and agree to the Privacy Policy, Terms & Conditions and Refund Policy.
         </label>
       </div>
 
@@ -171,7 +170,7 @@ export function RegisterForm() {
       </Button>
       
       <p className="text-xs text-center text-[var(--color-muted-foreground)] mt-4">
-        By continuing, you agree to our <Link href="/terms" className="text-[var(--color-primary)] hover:underline">Terms & Conditions</Link>, <Link href="/privacy" className="text-[var(--color-primary)] hover:underline">Privacy Policy</Link>, and <Link href="/refund-policy" className="text-[var(--color-primary)] hover:underline">Refund Policy</Link>.
+        By continuing, you agree to our Terms & Conditions, Privacy Policy, and Refund Policy.
       </p>
     </form>
   )
