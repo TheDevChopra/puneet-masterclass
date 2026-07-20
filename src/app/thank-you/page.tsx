@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { CheckCircle2, Calendar, Clock, MapPin, Download } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export default async function ThankYouPage({
   searchParams,
@@ -130,6 +131,16 @@ export default async function ThankYouPage({
           </div>
         </div>
       </Container>
+
+      {/* Small Legal Footer */}
+      <footer className="mt-24 border-t border-[var(--color-border)] py-8 px-6 text-center">
+        <p className="text-xs font-medium text-[var(--color-muted-foreground)] flex items-center justify-center flex-wrap gap-4">
+          <span>© 2026 Puneet Kaur Saluja.</span>
+          <Link href="/privacy" className="hover:text-[var(--color-foreground)] transition-colors">Privacy Policy</Link>
+          <Link href="/terms" className="hover:text-[var(--color-foreground)] transition-colors">Terms & Conditions</Link>
+          <Link href="/refund-policy" className="hover:text-[var(--color-foreground)] transition-colors">Refund Policy</Link>
+        </p>
+      </footer>
     </main>
   )
 }

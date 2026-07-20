@@ -246,7 +246,7 @@ export function RegisterForm() {
         </AnimatePresence>
       </div>
 
-      <div className="pt-4">
+      <div className="pt-4 flex flex-col gap-4">
         <button
           type="submit"
           disabled={!isValid || isPending}
@@ -267,6 +267,12 @@ export function RegisterForm() {
             )}
           </div>
         </button>
+        <p className="text-xs text-center text-gray-500 leading-relaxed">
+          By continuing, you agree to our{' '}
+          <Link href="/privacy" className="text-gray-900 hover:text-amber-600 font-semibold underline decoration-gray-300 underline-offset-2 transition-colors">Privacy Policy</Link>,{' '}
+          <Link href="/terms" className="text-gray-900 hover:text-amber-600 font-semibold underline decoration-gray-300 underline-offset-2 transition-colors">Terms & Conditions</Link>,{' '}
+          <Link href="/refund-policy" className="text-gray-900 hover:text-amber-600 font-semibold underline decoration-gray-300 underline-offset-2 transition-colors">Refund & Cancellation Policy</Link>.
+        </p>
       </div>
     </motion.form>
   )

@@ -4,6 +4,7 @@ import LegalPageLayout from '@/components/layout/LegalPageLayout';
 export const metadata: Metadata = {
   title: 'Terms & Conditions | Puneet Kaur Saluja',
   description: 'Read the Terms & Conditions governing the use of this website and workshop registrations.',
+  alternates: { canonical: '/terms' },
 };
 
 export default function TermsPage() {

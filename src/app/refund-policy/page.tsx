@@ -4,6 +4,7 @@ import LegalPageLayout from '@/components/layout/LegalPageLayout';
 export const metadata: Metadata = {
   title: 'Refund & Cancellation Policy | Puneet Kaur Saluja',
   description: 'Learn about our refund, cancellation and workshop registration policies.',
+  alternates: { canonical: '/refund-policy' },
 };
 
 export default function RefundPolicyPage() {

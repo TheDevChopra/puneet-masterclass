@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
-
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 interface LegalPageLayoutProps {
   title: string;
   effectiveDate: string;
@@ -10,8 +11,18 @@ interface LegalPageLayoutProps {
 
 export default function LegalPageLayout({ title, effectiveDate, subtitle, children, toc }: LegalPageLayoutProps) {
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-24 md:py-32 flex flex-col md:flex-row gap-12 lg:gap-24 items-start">
+    <div className="min-h-screen bg-background relative">
+      {/* Top Bar for Back Button */}
+      <div className="w-full border-b border-border/50 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-4 flex items-center">
+          <Link href="/" className="inline-flex items-center text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors group">
+            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+            Back to Workshop
+          </Link>
+        </div>
+      </div>
+
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24 flex flex-col md:flex-row gap-12 lg:gap-24 items-start">
         {/* Table of Contents (Sticky) */}
         {toc && toc.length > 0 && (
           <aside className="hidden md:block w-64 shrink-0 sticky top-32 max-h-[calc(100vh-8rem)] overflow-y-auto pr-6 custom-scrollbar">

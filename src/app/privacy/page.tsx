@@ -4,6 +4,7 @@ import LegalPageLayout from '@/components/layout/LegalPageLayout';
 export const metadata: Metadata = {
   title: 'Privacy Policy | Puneet Kaur Saluja',
   description: 'Read our Privacy Policy to understand how your information is collected, used and protected.',
+  alternates: { canonical: '/privacy' },
 };
 
 export default function PrivacyPolicyPage() {
